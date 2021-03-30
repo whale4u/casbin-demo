@@ -1,0 +1,5 @@
+module cabin-demo
+
+go 1.14
+
+require github.com/casbin/casbin/v2 v2.25.5
