@@ -1,1 +1,10 @@
 /vendor/
+.idea/webResources.xml
+.gitignore
+.idea/casbin-demo.iml
+.gitignore
+.idea/misc.xml
+.gitignore
+.idea/vcs.xml
+.gitignore
+.idea/modules.xml

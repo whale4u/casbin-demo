@@ -2,11 +2,19 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/casbin/casbin/v2"
+	gormadapter "github.com/casbin/gorm-adapter/v3"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
-	e, err := casbin.NewEnforcer("./model.conf", "./policy.csv")
+	a, _ := gormadapter.NewAdapter("mysql", "root:@tcp(127.0.0.1:3306)/casbin", true) // Your driver and data source.
+	e, _ := casbin.NewEnforcer("./model.conf", a)
+	// e, err := casbin.NewEnforcer("./model.conf", "./policy.csv")
+
+	// Load the policy from DB.
+	e.LoadPolicy()
 
 	sub := "susan" // the user that wants to access a resource.
 	obj := "data1" // the resource that is going to be accessed.
