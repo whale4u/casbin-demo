@@ -11,6 +11,7 @@ import (
 func main() {
 	a, _ := gormadapter.NewAdapter("mysql", "root:@tcp(127.0.0.1:3306)/casbin", true) // Your driver and data source.
 	e, _ := casbin.NewEnforcer("./model.conf", a)
+	e.AddFunction("my_func", KeyMatchFunc)
 	// e, err := casbin.NewEnforcer("./model.conf", "./policy.csv")
 
 	// Load the policy from DB.
@@ -39,4 +40,15 @@ func main() {
 		// deny the request, show an error
 		fmt.Println("Fail")
 	}
+}
+
+func KeyMatch(key1 string, key2 string) bool {
+	return key1 == key2
+}
+
+func KeyMatchFunc(args ...interface{}) (interface{}, error) {
+	name1 := args[0].(string)
+	name2 := args[1].(string)
+
+	return (bool)(KeyMatch(name1, name2)), nil
 }
