@@ -21,9 +21,21 @@ func main() {
 	act := "read"  // the operation that the user performs on the resource.
 
 	//add susan
-	added, err := e.AddPolicy("susan", "data1", "read")
+	added, err := e.AddPolicy("susan", "data2", "read")
 	fmt.Println(added)
 	fmt.Println(err)
+
+	//find susan
+	filteredPolicy := e.GetFilteredPolicy(0, "susan")
+	fmt.Println(filteredPolicy)
+
+	//update susan
+	updated, err := e.UpdatePolicy([]string{"susan", "data2", "read"}, []string{"susan", "data2", "write"})
+	fmt.Println(updated)
+
+	//delete susan
+	removed, err := e.RemovePolicy("susan", "data2", "write")
+	fmt.Println("remove susan:", removed)
 
 	ok, err := e.Enforce(sub, obj, act)
 
