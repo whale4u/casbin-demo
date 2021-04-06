@@ -20,12 +20,13 @@ func main() {
 	e.LoadPolicy()
 
 	sub := "susan" // the user that wants to access a resource.
-	obj := "data2" // the resource that is going to be accessed.
+	obj := "data1" // the resource that is going to be accessed.
 	act := "read"  // the operation that the user performs on the resource.
 
-	_, err := e.AddPolicy("admin", "data2", "read")
+	_, err := e.AddPolicy("data2_admin", "data2", "read")
+	_, err = e.AddPolicy("data2_admin", "data2", "write")
 	//增加susan为data2数据的admin角色
-	added, err := e.AddGroupingPolicy("susan", "admin")
+	added, err := e.AddGroupingPolicy("susan", "data2_admin")
 	fmt.Println(added)
 	fmt.Println(err)
 
@@ -40,10 +41,10 @@ func main() {
 
 	if ok == true {
 		// permit alice to read data1
-		fmt.Println("Pass")
+		fmt.Println(sub, obj, act, " Pass")
 	} else {
 		// deny the request, show an error
-		fmt.Println("Fail")
+		fmt.Println(sub, obj, act, " Fail")
 	}
 }
 
