@@ -9,7 +9,8 @@ import (
 )
 
 func main() {
-	a, _ := gormadapter.NewAdapter("mysql", "root:@tcp(127.0.0.1:3306)/casbin", true) // Your driver and data source.
+	a, err := gormadapter.NewAdapter("mysql", "root:@tcp(127.0.0.1:3306)/casbin", true) // Your driver and data source.
+	fmt.Println(err)
 	e, _ := casbin.NewEnforcer("./model.conf", a)
 	// e, err := casbin.NewEnforcer("./model.conf", "./policy.csv")
 
@@ -23,8 +24,10 @@ func main() {
 	obj := "data1" // the resource that is going to be accessed.
 	act := "read"  // the operation that the user performs on the resource.
 
-	_, err := e.AddPolicy("data2_admin", "data2", "read")
-	_, err = e.AddPolicy("data2_admin", "data2", "write")
+	_, err1 := e.AddPolicy("data2_admin", "data2", "read")
+	fmt.Println(err1)
+	_, err2 := e.AddPolicy("data2_admin", "data2", "write")
+	fmt.Println(err2)
 	//增加susan为data2数据的admin角色
 	added, err := e.AddGroupingPolicy("susan", "data2_admin")
 	fmt.Println(added)
