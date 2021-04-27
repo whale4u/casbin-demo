@@ -1,0 +1,3 @@
+p, data2_admin, /*, GET
+p, data2_admin, /*, POST
+g, alice, data2_admin
