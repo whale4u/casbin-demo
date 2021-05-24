@@ -20,9 +20,9 @@ func main() {
 	// Load the policy from DB.
 	//e.LoadPolicy()
 
-	sub := "alice"            // the user that wants to access a resource.
-	obj := "/data2_admin/xxx" // the resource that is going to be accessed.
-	act := "GET"              // the operation that the user performs on the resource.
+	sub := "anonymous" // the user that wants to access a resource.
+	obj := "/login"    // the resource that is going to be accessed.
+	act := "GET"       // the operation that the user performs on the resource.
 
 	//_, err1 := e.AddPolicy("data2_admin", "data2", "read")
 	//fmt.Println(err1)
