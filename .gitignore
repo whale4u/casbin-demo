@@ -1,1 +1,8 @@
 /vendor/
+.idea/casbin-demo.iml
+.gitignore
+.gitignore
+.idea/vcs.xml
+.gitignore
+.idea/modules.xml
+.idea/misc.xml
